@@ -17,8 +17,35 @@ public class PortableWeatherMachineItem extends Item {
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
 
         if (!level.isClientSide()) {
+            long time = level.getDayTime() % 24000;
+            String weather;
+
+            if (level.isThundering()) {
+                weather = "Thunderstorm";
+            } else if (level.isRaining()) {
+                weather = "Rain";
+            } else {
+                weather = "Clear";
+            }
+
+            String timeOfDay;
+
+            if (time < 1000) {
+                timeOfDay = "Sunrise";
+            } else if (time < 6000) {
+                timeOfDay = "Morning";
+            } else if (time < 12000) {
+                timeOfDay = "Afternoon";
+            } else if (time < 13000) {
+                timeOfDay = "Sunset";
+            } else if (time < 18000) {
+                timeOfDay = "Evening";
+            } else {
+                timeOfDay = "Night";
+            }
             player.displayClientMessage(
-                    Component.literal("Portable Weather Machine Activated!"),
+                    Component.literal("Weather: " + weather +
+                            " | Time: " + timeOfDay),
                     false
             );
         }
