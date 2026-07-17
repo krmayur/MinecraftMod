@@ -19,6 +19,7 @@ public class PortableWeatherMachineItem extends Item {
         if (!level.isClientSide()) {
             long time = level.getDayTime() % 24000;
             String weather;
+            long dayNumber = (level.getDayTime() / 24000) + 1;
 
             if (level.isThundering()) {
                 weather = "Thunderstorm";
@@ -45,7 +46,8 @@ public class PortableWeatherMachineItem extends Item {
             }
             player.displayClientMessage(
                     Component.literal("Weather: " + weather +
-                            " | Time: " + timeOfDay),
+                                    " | Time: " + timeOfDay +
+                                    " | Day: " + dayNumber),
                     false
             );
         }
