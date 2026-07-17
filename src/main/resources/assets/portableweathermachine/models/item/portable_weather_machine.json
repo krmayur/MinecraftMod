@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "portableweathermachine:item/portable_weather_machine"
+  }
+}
